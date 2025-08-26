@@ -18,77 +18,46 @@ public class StatsService {
         return average;
     }
 
-    public long[] maxSalesMonth(long[] sales) {
-        long maxSale = 0;
-        int count = 0;
-        for (int i = 0; i < 2; i++) {//Дважды прогоняется массив, сначала для поиска наивысшего значения,
-            for (long sale : sales) {// а потом для поиска количества совпадений, чтобы в дальнейшем создать нужной длинны массив.
-                if (sale > maxSale) {
-                    maxSale = sale;
-                } else if (i == 1 && maxSale == sale) {
-                    count++;
-                }
-            }
-        }
-        if (count==0){
-            count++;
-        }
-        long[] arrayMaxMonth = new long[count];
-
-        int tmpCount = 0;
+    public int maxSalesMonth(long[] sales) {
+        int maxMonth = 0;
         for (int i = 0; i < sales.length; i++) {
-            if (sales[i] == maxSale) {
-                arrayMaxMonth[tmpCount] = i+1;
-                tmpCount++;
+            if (sales[i] >= sales[maxMonth]) {
+                maxMonth = i;
             }
         }
-        System.out.println(Arrays.toString(arrayMaxMonth) + "были максимальные продажи");
-        return arrayMaxMonth;
+        System.out.println("Максимальные продажи в "+maxMonth+" месяце");
+        return maxMonth + 1;
     }
 
-    public long[] minSalesMonth(long[] sales) {
-        long minSale = Long.MAX_VALUE;
-        int count = 0;
-        for (int i = 0; i < 2; i++) {
-            for (long sale : sales) {
-                if (sale < minSale) {
-                    minSale = sale;
-                } else if (i == 1 && minSale == sale) {
-                    count++;
-                }
-            }
-        }
-        if (count==0){
-            count++;
-        }
-        long[] arrayMinMonth = new long[count];
-
-        int tmpCount = 0;
+    public int minSalesMonth(long[] sales) {
+        int minMonth = 0;
         for (int i = 0; i < sales.length; i++) {
-            if (sales[i] == minSale) {
-                arrayMinMonth[tmpCount] = i+1;
-                tmpCount++;
+            if (sales[i] <= sales[minMonth]) {
+                minMonth = i;
             }
         }
-        System.out.println(Arrays.toString(arrayMinMonth) + "были минимальные продажи");
-        return arrayMinMonth;
+        System.out.println("Минимальные продажи в "+minMonth+" месяце");
+        return minMonth + 1;
+
     }
 
     public int lowerAverageSales(long[] sales) {
         int lowerAvgSalesCount = 0;
+        long average = average(sales);
         for (long sale : sales) {
-            if (sale < average(sales)) {
+            if (sale < average) {
                 lowerAvgSalesCount++;
             }
         }
-        System.out.println("Количество месяцев продажами ниже среднего"+ lowerAvgSalesCount);
+        System.out.println("Количество месяцев продажами ниже среднего "+ lowerAvgSalesCount);
         return lowerAvgSalesCount;
     }
 
     public int upperAverageSales(long[] sales) {
         int upperAvgSalesCount = 0;
+        long average = average(sales);
         for (long sale : sales) {
-            if (sale > average(sales)) {
+            if (sale > average) {
                 upperAvgSalesCount++;
             }
         }

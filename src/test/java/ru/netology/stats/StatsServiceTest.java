@@ -21,15 +21,15 @@ public class StatsServiceTest {
     }
     @Test
     void shouldCalculateMaxSalesMonth(){
-        long []actual = service.maxSalesMonth(sales);
-        long []expected ={6,8};
-        Assertions.assertArrayEquals(expected,actual);
+        int actual = service.maxSalesMonth(sales);
+        int expected =8;
+        Assertions.assertEquals(expected,actual);
     }
     @Test
     void shouldCalculateMinSalesMonth(){
-        long []actual = service.minSalesMonth(sales);
-        long []expected ={9};
-        Assertions.assertArrayEquals(expected,actual);
+        int actual = service.minSalesMonth(sales);
+        int expected =9;
+        Assertions.assertEquals(expected,actual);
     }
     @Test
     void shouldCalculateLowerAverage(){
