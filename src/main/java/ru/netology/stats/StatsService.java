@@ -1,17 +1,22 @@
 package ru.netology.stats;
 
+import java.util.Arrays;
+
 public class StatsService {
     public long summarySales(long[] sales) {
         long summ = 0;
         for (long sale : sales) {
             summ += sale;
         }
+        System.out.println("Суммарные продажи за год: "+summ);
         return summ;
     }
 
     public long average(long[] sales) {
         long summ = summarySales(sales);
-        return summ / sales.length;
+        long average = summ / sales.length;
+        System.out.println("Средние продажи за год "+average);
+        return average;
     }
 
     public long[] maxSalesMonth(long[] sales) {
@@ -38,6 +43,7 @@ public class StatsService {
                 tmpCount++;
             }
         }
+        System.out.println(Arrays.toString(arrayMaxMonth) + "были максимальные продажи");
         return arrayMaxMonth;
     }
 
@@ -65,6 +71,7 @@ public class StatsService {
                 tmpCount++;
             }
         }
+        System.out.println(Arrays.toString(arrayMinMonth) + "были минимальные продажи");
         return arrayMinMonth;
     }
 
@@ -76,6 +83,7 @@ public class StatsService {
                 lowerAvgSalesCount++;
             }
         }
+        System.out.println("Количество месяцев продажами ниже среднего"+ lowerAvgSalesCount);
         return lowerAvgSalesCount;
     }
 
@@ -87,6 +95,7 @@ public class StatsService {
                 upperAvgSalesCount++;
             }
         }
+        System.out.println("Количество месяцев продажами ниже среднего"+ upperAvgSalesCount);
         return upperAvgSalesCount;
     }
 }
