@@ -13,8 +13,7 @@ public class StatsService {
     }
 
     public long average(long[] sales) {
-        long summ = summarySales(sales);
-        long average = summ / sales.length;
+        long average = summarySales(sales)/sales.length;
         System.out.println("Средние продажи за год "+average);
         return average;
     }
@@ -77,9 +76,8 @@ public class StatsService {
 
     public int lowerAverageSales(long[] sales) {
         int lowerAvgSalesCount = 0;
-        long avg = average(sales);
         for (long sale : sales) {
-            if (sale < avg) {
+            if (sale < average(sales)) {
                 lowerAvgSalesCount++;
             }
         }
@@ -88,10 +86,9 @@ public class StatsService {
     }
 
     public int upperAverageSales(long[] sales) {
-        long avg = average(sales);
         int upperAvgSalesCount = 0;
         for (long sale : sales) {
-            if (sale > avg) {
+            if (sale > average(sales)) {
                 upperAvgSalesCount++;
             }
         }
